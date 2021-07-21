@@ -1,0 +1,4 @@
+Contributors for Virtual Pet Simulator
+If you contributed code, even just one line, feel free to put your username in here.
+
+awaffle1
