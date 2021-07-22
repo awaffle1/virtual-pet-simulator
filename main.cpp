@@ -8,23 +8,89 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include "game.hpp" // Not a external library, but has game actions
+#include "game.hpp" // Header file
 
 using namespace std;
 
 // Set constants
 
-#define VPSVERSION "alpha 0.1"
+#define VPSVERSION "a0.2"
 #define VPS "Virtual Pet Simulator"
+
+// Global variables
+
+int credits = 0;
+int xp = 0; // will implement xp later
+int gems = 0;
+string petType;
+// I have nooo clue what this 32 means. 32 bits I guess? I was able to get
+// 80-character pet names when testing it out, and I don't think anyone would
+// make pet names that long, so I stopped testing. The max character count might be
+// 256 but I can't be bothered to test.
+char petName[32];
 
 // Game
 
+void newGame(void) {
+	char verifyChoice[] = " ";
+	int petTypeSelected = 0;
+	
+	while (petTypeSelected == 0) {
+		char petTypeOption[] = " ";
+		cout << "Please select your pet type. Enter the number before the pet type to select it.\nValid types are:\n1 ) dog\n2 ) cat\n" << endl;
+		cout << "pcw > "; // pcw = pet creation wizard
+		cin >> petTypeOption;
+
+		if (petTypeOption[0] == '1') {
+			petType = "dog";
+			cout << "Pet type selected is dog. Is this correct? (y/n) ";
+			cin >> verifyChoice;
+			if (verifyChoice[0] == 'y') {
+				petTypeSelected = 1;
+			} else {
+				cout << "\n";
+			}
+		} else if (petTypeOption[0] == '2') {
+			petType = "cat";
+			cout << "Pet type selected is cat. Is this correct? (y/n) ";
+			cin >> verifyChoice;
+			if (verifyChoice[0] == 'y') {
+				petTypeSelected = 1;
+			} else {
+				cout << "\n";
+			}
+		} else {
+			cout << "Please select a valid pet type.\n" << endl;
+		}
+	}
+
+	int petNameSelected = 0;
+
+	while (petNameSelected == 0) {
+		char verifyChoice[] = " ";
+
+		cout << "\nPlease select your pet's name (Replace spaces with underscores).\n" << endl;
+		cout << "pcw > ";
+		cin >> petName;
+
+		cout << "Selected pet name is " << petName << ", is this correct? (y/n) ";
+		cin >> verifyChoice;
+		if (verifyChoice[0] == 'y') {
+			petNameSelected = 1;
+		}
+	}
+
+	cout << "Pet registered. Information:" << endl;
+	cout << "Pet type: " << petType << endl;
+	cout << "Pet name: " << petName << endl;
+	cout << "Continuing to main game...\n" << endl;
+}
+
 void game(void) {
+	newGame();
+
 	char action[] = " ";
 	int exitGame = 0;
-	int credits = 0;
-	int xp = 0; // will implement xp later
-	int gems = 0;
 
 	cout << "Enter in the number or character before the action to do that action. Actions are case-sensitive.\nValid actions are:\n1 ) Walk\nE ) Return to main menu\n" << endl;
 	while (exitGame != 1) {
@@ -36,67 +102,12 @@ void game(void) {
 			if (isBoost == 2) {
 				cout << "You got a boost!\n" << endl;
 			}
-
-			int walkingReward = rand() % 10 + 1; // Pick random number between 1 and 10
-			int creditAmount;
-			int gemAmount;
-
-			if (walkingReward == 1) {
-				cout << "No reward this time :(\n" << endl;
-			} else if (walkingReward == 2 || walkingReward == 3) {
-				creditAmount = rand() % 101 + 50; // Random number between 50 and 150
-				cout << "Recieved " << creditAmount << " credits." << endl;
-				credits += creditAmount;
-				cout << "You now have " << credits << " credits.\n" << endl;
-			} else if (walkingReward == 4 || walkingReward == 5 || walkingReward == 6) {
-				gemAmount = rand() % 6 + 0; // Random number between 0 and 5
-				creditAmount = rand() % 151 + 150; // Random number between 150 and 300
-				if (gemAmount != 0) {
-					cout << "Recieved " << gemAmount << " gems." << endl;
-					gems += gemAmount;
-				}
-				cout << "Recieved " << creditAmount << " credits." << endl;
-				credits += creditAmount;
-				if (gemAmount != 0) {cout << "You now have " << gems << " gems." << endl;}
-				cout << "You now have " << credits << " credits.\n" << endl;
-			} else if (walkingReward == 7 || walkingReward == 8) {
-				gemAmount = rand() % 11 + 0; // Random number between 0 and 10
-				creditAmount = rand() % 201 + 250; // Random number between 250 and 450
-				if (gemAmount != 0) {
-					cout << "Recieved " << gemAmount << " gems." << endl;
-					gems += gemAmount;
-				}
-				cout << "Recieved " << creditAmount << " credits." << endl;
-				credits += creditAmount;
-				if (gemAmount != 0) {cout << "You now have " << gems << " gems." << endl;}
-				cout << "You now have " << credits << " credits.\n" << endl;
-			} else if (walkingReward == 9) {
-				gemAmount = rand() % 26 + 0; // Random number between 0 and 25
-				creditAmount = rand() % 251 + 250; // Random number between 250 and 500
-				if (gemAmount != 0) {
-					cout << "Recieved " << gemAmount << " gems." << endl;
-					gems += gemAmount;
-				}
-				cout << "Recieved " << creditAmount << " credits." << endl;
-				credits += creditAmount;
-				if (gemAmount != 0) {cout << "You now have " << gems << " gems." << endl;}
-				cout << "You now have " << credits << " credits.\n" << endl;
-			} else if (walkingReward == 10) {
-				gemAmount = rand() % 43 + 0; // Random number between 0 and 42 (why 42? idk)
-				creditAmount = rand() % 51 + 500; // Random number between 500 and 550
-				if (gemAmount != 0) {
-					cout << "Recieved " << gemAmount << " gems." << endl;
-					gems += gemAmount;
-				}
-				cout << "Recieved " << creditAmount << " credits." << endl;
-				credits += creditAmount;
-				if (gemAmount != 0) {cout << "You now have " << gems << " gems." << endl;}
-				cout << "You now have " << credits << " credits.\n" << endl;
-			}
-
+			walkPetReward();
 		} else if (action[0] == 'E') {
 			cout << "Returning to main menu"; // Too many newlines if I add an endl
 			exitGame = 1; // Exit while loop and return to main init function
+		} else if (action[0] == '2') {
+			allStats();
 		} else {
 			cout << "Unknown command\n" << endl;
 		}
@@ -121,7 +132,7 @@ int main(void) {
 			cout << "Opening game\n" << endl;
 			startGame = 1;
 			game();
-			cout << "\n\nWelcome to " << VPS << " version " << VPSVERSION << endl;
+			cout << "\nWelcome to " << VPS << " version " << VPSVERSION << endl;
 			cout << "Please select a choice from the list below:\n1 ) Play\n2 ) Exit" << endl;
 			startGame = 0;
 		} else if (menuSelection[0] == '2') {
