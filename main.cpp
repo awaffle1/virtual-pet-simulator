@@ -14,7 +14,7 @@ using namespace std;
 
 // Set constants
 
-#define VPSVERSION "a0.2"
+#define VPSVERSION "a0.2.1"
 #define VPS "Virtual Pet Simulator"
 
 // Global variables
