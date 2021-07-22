@@ -92,7 +92,7 @@ void game(void) {
 	char action[] = " ";
 	int exitGame = 0;
 
-	cout << "Enter in the number or character before the action to do that action. Actions are case-sensitive.\nValid actions are:\n1 ) Walk\nE ) Return to main menu\n" << endl;
+	cout << "Enter in the number or character before the action to do that action. Actions are case-sensitive.\nValid actions are:\n1 ) Walk\n2 ) Statistics\nE ) Return to main menu\n" << endl;
 	while (exitGame != 1) {
 		cout << "game > ";
 		cin >> action;
