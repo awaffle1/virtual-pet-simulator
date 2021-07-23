@@ -1,5 +1,11 @@
 .git
 
+# Save files
+*.vpssave
+
+# Game binary
+virtualpetsim
+
 # Prerequisites
 *.d
 

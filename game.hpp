@@ -22,7 +22,7 @@ extern char petName[32];
 int walkPet(void) {
 	int chanceOfBoost = rand() % 10 + 1; // Pick random number between 1 and 10
 
-	cout << "You are walking your pet...\n" << endl;
+	cout << "You are walking " << petName << "...\n" << endl;
 	// I should probably move the boost to the reward function but the boost doesn't
 	// even do anything yet so I don't need to right now, watch as I release this thing
 	// and the boost is still useless
@@ -92,14 +92,21 @@ void walkPetReward(void) {
 	}
 }
 
-/// Pet statistics
+/// General statistics
 
 void allStats(void) {
 	// Displays current game statistics to the player
 	cout << "\n--------( Statistics )--------" << endl;
 	cout << "Credits: " << credits << endl;
 	cout << "Gems: " << gems << endl;
-	cout << "EXP: " << xp << endl;
-	cout << "Pet Name: " << petName << endl;
-	cout << "Pet Type: " << petType << "\n" << endl;
+	cout << "EXP: " << xp << "\n" << endl;
+}
+
+/// Pet info
+
+void petInfo(void) {
+	// Displays pet information to the player
+	cout << "\n--------( " << petName << " )--------" << endl;
+	cout << "Type: " << petType << endl;
+	cout << "More coming soon" << "\n" << endl;
 }
