@@ -14,7 +14,7 @@ Download the binary from the Releases tab and run it in your terminal.
 
 ### Windows
 
-You'll have to download the code and self-compile. I use GCC so you're really on your own if you use Windows when it comes to compilers (gcc might work on windows). I'm pretty sure the code is C++11 compliant so you shouldn't have to worry. Compiling should only take a second.
+Self-compile
 
 ### Mac
 
